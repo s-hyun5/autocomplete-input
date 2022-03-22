@@ -4,6 +4,7 @@ export default function ClearButton({$app, initialState, onClick}){
     this.state = initialState
     this.onClick = onClick
 
+    //clear button 생성
     this.$target = document.querySelector('.input-wrap')
     this.$button = document.createElement('button')
     this.$button.id = 'btn-clear'
@@ -13,6 +14,7 @@ export default function ClearButton({$app, initialState, onClick}){
     this.$icon.className = 'fa-solid fa-circle-xmark'
     this.$button.appendChild(this.$icon)
 
+    //clear button 클릭 시 input value 삭제
     this.$button.addEventListener('click', e => {
         e.preventDefault();
         this.onClick();
