@@ -1,6 +1,7 @@
 import {request} from './api';
 import '@fortawesome/fontawesome-free/js/all';
 import Input from "./components/Input/index";
+import Autocomplete from "./components/autocomplete/index";
 
 export default function App($app) {
     this.state = {
@@ -19,11 +20,23 @@ export default function App($app) {
             if(value !== ""){
                 query(value)
             }
+            dropdown.setState({
+                ...this.state,
+                searchWord: value,
+            })
         },
+    })
+
+    const autocomplete = new Autocomplete({
+        $app,
     })
 
     this.setState = (nextState) => {
         this.state = nextState
+        autocomplete.setState({
+            ...this.state,
+            data: this.state.data,
+        })
     }
 
     const query = async (searchWord) => {
