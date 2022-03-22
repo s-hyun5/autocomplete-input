@@ -1,6 +1,8 @@
 import "./input.css";
 
-export default function Input({$app}){
+export default function Input({$app, onChange}){
+    this.onChange = onChange
+
     this.$target = document.createElement('form')
     this.$target.id = 'searchForm'
     this.$target.setAttribute('autocomplete', "off")
@@ -17,4 +19,8 @@ export default function Input({$app}){
     this.$icon = document.createElement('icon')
     this.$icon.className = 'search-icon fa-solid fa-magnifying-glass'
     this.$inputWrap.appendChild(this.$icon)
+
+    this.$target.addEventListener('input', e => {
+        this.onChange(e.target.value)
+    })
 }
