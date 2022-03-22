@@ -4,7 +4,7 @@ export default function Autocomplete({$app, initialState}){
     this.state = initialState
 
     this.$target = document.createElement('ul')
-    this.$target.id = 'dropdown-wrap'
+    this.$target.id = 'autocomplete-wrap'
 
     this.setState = nextState => {
         this.state = nextState
@@ -16,6 +16,7 @@ export default function Autocomplete({$app, initialState}){
             this.$target.remove();
         } else {
             $app.appendChild(this.$target)
+            this.$target.style.display = this.state.isToggle ? 'initial' : 'none'
 
             this.$target.innerHTML =
                 this.state.data.map(

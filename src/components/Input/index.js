@@ -1,7 +1,9 @@
 import "./input.css";
 
-export default function Input({$app, onChange}){
+export default function Input({$app, onChange, focusIn, focusOut}){
     this.onChange = onChange
+    this.focusIn = focusIn
+    this.focusOut = focusOut
 
     this.$target = document.createElement('form')
     this.$target.id = 'searchForm'
@@ -22,5 +24,13 @@ export default function Input({$app, onChange}){
 
     this.$target.addEventListener('input', e => {
         this.onChange(e.target.value)
-    })
+    });
+
+    this.$target.addEventListener('focusin', e => {
+        this.focusIn()
+    });
+
+    this.$target.addEventListener('focusout', e => {
+        this.focusOut()
+    });
 }

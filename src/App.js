@@ -6,7 +6,8 @@ import Autocomplete from "./components/autocomplete/index";
 export default function App($app) {
     this.state = {
         searchWord: '',
-        data: []
+        data: [],
+        isToggle: false,
     }
 
     const input = new Input({
@@ -25,6 +26,18 @@ export default function App($app) {
                 searchWord: value,
             })
         },
+        focusIn: () => {
+            this.setState({
+                ...this.state,
+                isToggle: true
+            })
+        },
+        focusOut: () => {
+            this.setState({
+                ...this.state,
+                isToggle: false
+            })
+        },
     })
 
     const autocomplete = new Autocomplete({
@@ -36,6 +49,7 @@ export default function App($app) {
         autocomplete.setState({
             ...this.state,
             data: this.state.data,
+            isToggle: this.state.isToggle,
         })
     }
 

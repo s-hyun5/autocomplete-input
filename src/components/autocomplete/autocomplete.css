@@ -1,4 +1,4 @@
-#dropdown-wrap{
+#autocomplete-wrap{
     position: absolute;
     top: 100%;
     left: 0;
@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 
-#dropdown-wrap .option{
+#autocomplete-wrap .option{
     display: inline-flex;
     align-items: center;
     width: 100%;
@@ -29,9 +29,9 @@
     border-radius: 4px;
 }
 
-#dropdown-wrap .option:hover,
-#dropdown-wrap .option:focus,
-#dropdown-wrap .option.selected{
+#autocomplete-wrap .option:hover,
+#autocomplete-wrap .option:focus,
+#autocomplete-wrap .option.selected{
     background: #333436;
     cursor: pointer;
 }
