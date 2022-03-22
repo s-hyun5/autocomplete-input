@@ -30,6 +30,6 @@ yarn-error.log*
 # editor
 .idea
 .idea*
-.idea/workspace.xml
+.idea/*.xml
 .iml
 *.iml
