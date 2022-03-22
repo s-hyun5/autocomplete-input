@@ -8,6 +8,7 @@ export default function App($app) {
         searchWord: '',
         data: [],
         isToggle: false,
+        selectIdx: ''
     }
 
     const input = new Input({
@@ -38,6 +39,44 @@ export default function App($app) {
                 isToggle: false
             })
         },
+        arrowDown : () => {
+            if(this.state.data.length === 0) return;
+            if(this.state.selectIdx === ""){
+                this.setState({
+                    ...this.state,
+                    selectIdx: 0
+                })
+            } else if(this.state.selectIdx === this.state.data.length - 1){
+                this.setState({
+                    ...this.state,
+                    selectIdx: ''
+                })
+            } else {
+                this.setState({
+                    ...this.state,
+                    selectIdx: this.state.selectIdx += 1
+                })
+            }
+        },
+        arrowUp : () => {
+            if(this.state.data.length === 0) return;
+            if(this.state.selectIdx === ""){
+                this.setState({
+                    ...this.state,
+                    selectIdx: this.state.data.length - 1
+                })
+            } else if(this.state.selectIdx === 0){
+                this.setState({
+                    ...this.state,
+                    selectIdx: ''
+                })
+            } else {
+                this.setState({
+                    ...this.state,
+                    selectIdx: this.state.selectIdx -= 1
+                })
+            }
+        }
     })
 
     const autocomplete = new Autocomplete({
@@ -50,6 +89,7 @@ export default function App($app) {
             ...this.state,
             data: this.state.data,
             isToggle: this.state.isToggle,
+            selectIdx: this.state.selectIdx
         })
     }
 

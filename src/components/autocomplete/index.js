@@ -20,8 +20,16 @@ export default function Autocomplete({$app, initialState}){
 
             this.$target.innerHTML =
                 this.state.data.map(
-                    (data, index) => `<li class="option">${data.text}</li>`
+                    (data, index) => `<li>${data.text}</li>`
                 ).join('')
+
+            this.$target.childNodes.forEach((c, c_idx) => {
+                if(c_idx === this.state.selectIdx){
+                    c.setAttribute("class", "option selected")
+                } else {
+                    c.setAttribute("class", "option" )
+                }
+            })
         }
     }
 }
