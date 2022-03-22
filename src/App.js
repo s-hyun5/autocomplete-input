@@ -4,6 +4,8 @@ import Input from "./components/Input/index";
 import Autocomplete from "./components/Autocomplete/index";
 import ClearButton from "./components/ClearButton/index";
 
+const cache = {}
+
 export default function App($app) {
     this.state = {
         searchWord: '',
@@ -109,11 +111,19 @@ export default function App($app) {
     }
 
     const query = async (searchWord) => {
-        const newData = await request(searchWord);
+        if(cache.hasOwnProperty(searchWord)){
+            this.setState({
+                ...this.state,
+                data: cache[searchWord],
+            })
+        } else {
+            const newData = await request(searchWord);
+            this.setState({
+                ...this.state,
+                data: newData,
+            })
 
-        this.setState({
-            ...this.state,
-            data: newData,
-        })
+            cache[searchWord] = newData;
+        }
     }
 }
