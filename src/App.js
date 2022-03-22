@@ -1,7 +1,8 @@
 import {request} from './api';
 import '@fortawesome/fontawesome-free/js/all';
 import Input from "./components/Input/index";
-import Autocomplete from "./components/autocomplete/index";
+import Autocomplete from "./components/Autocomplete/index";
+import ClearButton from "./components/ClearButton/index";
 
 export default function App($app) {
     this.state = {
@@ -18,11 +19,13 @@ export default function App($app) {
             this.setState({
                 ...this.state,
                 searchWord: value,
+                selectIdx: ''
             })
             if(value !== ""){
                 query(value)
             }
-            dropdown.setState({
+            clearButton.setState(value)
+            autocomplete.setState({
                 ...this.state,
                 searchWord: value,
             })
@@ -81,6 +84,18 @@ export default function App($app) {
 
     const autocomplete = new Autocomplete({
         $app,
+    })
+
+    const clearButton = new ClearButton({
+        $app,
+        onClick: () => {
+            this.setState({
+                ...this.state,
+                searchWord: '',
+                data: [],
+                selectIdx: ''
+            })
+        }
     })
 
     this.setState = (nextState) => {
