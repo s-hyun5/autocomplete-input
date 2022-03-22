@@ -28,10 +28,18 @@ export default function Input({$app, onChange, focusIn, focusOut, arrowDown, arr
     this.$icon.className = 'search-icon fa-solid fa-magnifying-glass'
     this.$inputWrap.appendChild(this.$icon)
 
+    let timeout;
+
     //input value 값 전달하는 이번트 추가
-    this.$target.addEventListener('input', e => {
-        this.onChange(e.target.value)
-    })
+    this.$target.addEventListener("input", (e) => {
+        if(timeout){
+            clearTimeout(timeout)
+        }
+        timeout = setTimeout(() =>
+            this.onChange(e.target.value)
+        , 500);
+    });
+
 
     //input focusin 이벤트 추가
     this.$target.addEventListener('focusin', e => {
